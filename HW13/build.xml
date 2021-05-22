@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="HW13">
+	<property environment="env" />
+	<property name="junit.output.dir" value="junit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="classpath">
+		<pathelement location="bin" />
+		<pathelement location="test/bin" />
+		<fileset dir="${env.JUNIT}" includes ="*.jar" excludes ="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir="bin" />
+		<mkdir dir="test/bin" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="bin" />
+		<delete dir="test/bin" />
+	</target>
+	
+	<target depends="clean" name="cleanall" />
+	<target
+		depends="clean, build-project, DJIAEvent, DJIAQuoteObservable, PiechartObserver, StockEvent, StockQuoteObservable, 
+		TableObserver, ThreeDObserver, DJIAQuoteObservableTest, StockQuoteObservableTest"
+		name="build" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin"
+			includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="classpath" />
+		</javac>
+		<javac debug="true" debuglevel="${debuglevel}"
+			destdir="test/bin" includeantruntime="false" source="${source}"
+			target="${target}">
+			<src path="test/src" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target name="DJIAEvent">
+		<java classname="edu.umb.cs680.hw13.DJIAEvent" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="DJIAQuoteObservable">
+		<java classname="edu.umb.cs680.hw13.DJIAQuoteObservable" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="PiechartObserver">
+		<java classname="edu.umb.cs680.hw13.PiechartObserver" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="StockEvent">
+		<java classname="edu.umb.cs680.hw13.StockEvent" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="StockQuoteObservable">
+		<java classname="edu.umb.cs680.hw13.StockQuoteObservable" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="TableObserver">
+		<java classname="edu.umb.cs680.hw13.TableObserver" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="ThreeDObserver">
+		<java classname="edu.umb.cs680.hw13.ThreeDObserver" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+
+	<target name="DJIAQuoteObservableTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw13/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="StockQuoteObservableTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw13/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+</project>

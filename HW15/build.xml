@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="HW15">
+	<property environment="env" />
+	<property name="junit.output.dir" value="junit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="classpath">
+		<pathelement location="bin" />
+		<pathelement location="test/bin" />
+		<fileset dir="${env.JUNIT}" includes ="*.jar" excludes ="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir="bin" />
+		<mkdir dir="test/bin" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="bin" />
+		<delete dir="test/bin" />
+	</target>
+	
+	<target depends="clean" name="cleanall" />
+	<target
+		depends="clean, build-project, APFS, APFSLink, APFSDirectory, APFSElement, APFSFile, FileSystem, FSElement, 
+		APFSTest, APFSLinkTest, APFSDirectoryTest, APFSFileTest, FileSystemTest, AlphabeticalComparatorTest, ElementBasedComparatorTest,
+		ReverseAlphabeticalComparatorTest, TimeStampComparatorTest"
+		name="build" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin"
+			includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="classpath" />
+		</javac>
+		<javac debug="true" debuglevel="${debuglevel}"
+			destdir="test/bin" includeantruntime="false" source="${source}"
+			target="${target}">
+			<src path="test/src" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="APFS">
+		<java classname="edu.umb.cs680.hw15.APFS" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSElement">
+		<java classname="edu.umb.cs680.hw15.APFSElement" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+
+	<target name="APFSDirectory">
+		<java classname="edu.umb.cs680.hw15.APFSDirectory" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSFile">
+		<java classname="edu.umb.cs680.hw15.APFSFile" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="FileSystem">
+		<java classname="edu.umb.cs680.hw15.FileSystem" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="FSElement">
+		<java classname="edu.umb.cs680.hw15.FSElement" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSLink">
+		<java classname="edu.umb.cs680.hw15.APFSLink" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+
+	<target name="APFSDirectoryTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSFileTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="FileSystemTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSLinkTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="AlphabeticalComparatorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="TimeStampComparatorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="ElementBasedComparatorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="ReverseAlphabeticalComparatorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw15/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+</project>

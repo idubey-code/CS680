@@ -1,0 +1,29 @@
+Testcase: edu.umb.cs680.hw13.DJIAQuoteObservableTest
+Test: DjiaQuoteTest() took 11 milli sec(s)
+Tests run: 1, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 12 milli sec(s)
+------------- Standard Output ---------------
+
+ ThreeDObserver :
+ Quote: 65.0
+
+
+ THREEDObserver :
+ Quote: 65.0
+
+
+ Sent to 3d observer:
+ Quote: 65.0
+
+
+ ThreeDObserver :
+ Quote: 70.0
+
+
+ THREEDObserver :
+ Quote: 70.0
+
+
+ Sent to 3d observer:
+ Quote: 70.0
+
+------------- ---------------- ---------------
