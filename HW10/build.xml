@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="HW10">
+	<property environment="env" />
+	<property name="junit.output.dir" value="junit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="classpath">
+		<pathelement location="bin" />
+		<pathelement location="test/bin" />
+		<fileset dir="${env.JUNIT}" includes ="*.jar" excludes ="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir="bin" />
+		<mkdir dir="test/bin" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="bin" />
+		<delete dir="test/bin" />
+	</target>
+	
+	<target depends="clean" name="cleanall" />
+	<target
+		depends="clean, build-project, APFS, APFSLink, APFSDirectory, APFSElement, APFSFile, FileSystem, FSElement, APFSCountingVisitor,
+		APFSFileCrawlingVisitor, APFSFileSearchVisitor, APFSFSVisitor, APFSTest, APFSLinkTest, APFSDirectoryTest, APFSFileTest, FileSystemTest, 
+		APFSCountingVisitorTest, APFSFileCrawlingVisitorTest, APFSFileSearchVisitorTest"
+		name="build" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin"
+			includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="classpath" />
+		</javac>
+		<javac debug="true" debuglevel="${debuglevel}"
+			destdir="test/bin" includeantruntime="false" source="${source}"
+			target="${target}">
+			<src path="test/src" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="APFS">
+		<java classname="edu.umb.cs680.hw10.APFS" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSElement">
+		<java classname="edu.umb.cs680.hw10.APFSElement" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+
+	<target name="APFSDirectory">
+		<java classname="edu.umb.cs680.hw10.APFSDirectory" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSFile">
+		<java classname="edu.umb.cs680.hw10.APFSFile" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="FileSystem">
+		<java classname="edu.umb.cs680.hw10.FileSystem" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="FSElement">
+		<java classname="edu.umb.cs680.hw10.FSElement" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSLink">
+		<java classname="edu.umb.cs680.hw10.APFSLink" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSCountingVisitor">
+		<java classname="edu.umb.cs680.hw10.APFSCountingVisitor" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSFSVisitor">
+		<java classname="edu.umb.cs680.hw10.APFSFSVisitor" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSFileCrawlingVisitor">
+		<java classname="edu.umb.cs680.hw10.APFSFileCrawlingVisitor" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSFileSearchVisitor">
+		<java classname="edu.umb.cs680.hw10.APFSFileSearchVisitor" classpath="bin"
+			failonerror="true" fork="yes" />
+	</target>
+	
+	<target name="APFSTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+
+	<target name="APFSDirectoryTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSFileTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="FileSystemTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSLinkTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSCountingVisitorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSFileCrawlingVisitorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+	<target name="APFSFileSearchVisitorTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="test/bin">
+					<include name="edu/umb/cs680/hw10/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+	
+</project>
